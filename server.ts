@@ -1,6 +1,12 @@
 import fastify from 'fastify';
-import crypto from 'node:crypto';
+import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchemaTransform } from 'fastify-type-provider-zod';
+import { fastifySwagger } from '@fastify/swagger';
+import { getCoursesRoute } from './src/routes/get-course-by-id.ts';
+import { getCoursesByIdRoute } from './src/routes/get-courses.ts';
+import { createCoursesRoute } from './src/routes/create-course.ts';
+import scarlarAPIReference from '@scalar/fastify-api-reference';
 
+const PORT = 3333;
 const server = fastify({
   logger: {
     transport: {
@@ -10,55 +16,31 @@ const server = fastify({
         ignore: 'pid,hostname',
       },
     },
-  }
-});
+  },
+}).withTypeProvider<ZodTypeProvider>();
 
-const PORT = 3333;
+if (process.env.NODE_ENV === 'development') {
+  server.register(fastifySwagger, {
+    openapi: {
+      info: {
+        title: 'API Cursos NodeJS',
+        version: '1.0.0',
+      },
+    },
+    transform: jsonSchemaTransform,
+  });
 
-const courses = [
-  { id: '1', title: 'Curso de NodeJS' },
-  { id: '2', title: 'Curso de React' },
-  { id: '3', title: 'Curso de NextJs' },
-];
+  server.register(scarlarAPIReference, {
+    routePrefix: '/docs',
+  });
+}
 
-server.get('/courses', () => {
-  return { courses };
-});
+server.setSerializerCompiler(serializerCompiler);
+server.setValidatorCompiler(validatorCompiler);
 
-server.get('/courses/:id', (request, reply) => {
-  type Params = {
-    id: string
-  }
-
-  const params = request.params as Params;
-  const courseId = params.id;
-
-  const course = courses.find((course) => course.id === courseId);
-
-  if (course) {
-    return { course };
-  }
-
-  return reply.status(404).send();
-});
-
-server.post('/courses', (request, reply) => {
-  type Body = {
-    title: string
-  }
-
-  const courseId = crypto.randomUUID();
-  const body = request.body as Body;
-  const courseTitle = body.title;
-
-  if (!courseTitle) {
-    return reply.status(400).send({ message: 'Titulo obrigatório' });
-  }
-
-  courses.push({ id: courseId, title: courseTitle });
-
-  return reply.status(201).send({ courseId });
-});
+server.register(getCoursesRoute);
+server.register(getCoursesByIdRoute);
+server.register(createCoursesRoute);
 
 server.listen({ port: PORT }).then(() => {
   console.log(`HTTP server running...`);
