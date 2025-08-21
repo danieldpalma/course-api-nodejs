@@ -15,6 +15,20 @@
       "when": 1755708146206,
       "tag": "0001_colossal_sentinels",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755810196918,
+      "tag": "0002_eminent_lyja",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755810356360,
+      "tag": "0003_wealthy_the_hood",
+      "breakpoints": true
     }
   ]
 }
