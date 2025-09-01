@@ -19,3 +19,11 @@ test('Get course by id', async () => {
     },
   });
 });
+
+test('Return 404 for non existing course', async () => {
+  await server.ready();
+
+  const response = await request(server.server).get(`/courses/52a12554-72b9-416e-9dc7-118aa526df83`);
+
+  expect(response.status).toEqual(404);
+});
