@@ -1,12 +1,11 @@
 import fastify from 'fastify';
 import { validatorCompiler, serializerCompiler, type ZodTypeProvider, jsonSchemaTransform } from 'fastify-type-provider-zod';
 import { fastifySwagger } from '@fastify/swagger';
-import { getCoursesRoute } from './src/routes/get-course-by-id.ts';
-import { getCoursesByIdRoute } from './src/routes/get-courses.ts';
-import { createCoursesRoute } from './src/routes/create-course.ts';
+import { getCoursesRoute } from './routes/get-course-by-id.ts';
+import { getCoursesByIdRoute } from './routes/get-courses.ts';
+import { createCoursesRoute } from './routes/create-course.ts';
 import scarlarAPIReference from '@scalar/fastify-api-reference';
 
-const PORT = 3333;
 const server = fastify({
   logger: {
     transport: {
@@ -42,6 +41,4 @@ server.register(getCoursesRoute);
 server.register(getCoursesByIdRoute);
 server.register(createCoursesRoute);
 
-server.listen({ port: PORT }).then(() => {
-  console.log(`HTTP server running...`);
-});
+export { server };
