@@ -36,6 +36,13 @@
       "when": 1755870276729,
       "tag": "0004_whole_hairball",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1757178594931,
+      "tag": "0005_cynical_marauders",
+      "breakpoints": true
     }
   ]
 }
