@@ -5,14 +5,14 @@
 
   "compilerOptions": {
     "lib": [
-      "es2022",
+      "es2024",
       "ESNext.Array",
       "ESNext.Collection",
       "ESNext.Iterator",
       "ESNext.Promise"
     ],
     "module": "nodenext",
-    "target": "es2024",
+    "target": "es2022",
     "allowImportingTsExtensions": true,
     "noEmit":true,
 
