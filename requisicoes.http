@@ -20,3 +20,13 @@ GET http://localhost:3333/courses?orderby=title&page=1
 ###
 
 GET http://localhost:3333/courses/0e5db61d-99ba-4659-a421-bc3cdf829037
+
+###
+
+POST http://localhost:3333/sessions
+Content-Type: application/json
+
+{
+  "email": "AnaJulia39@gmail.com",
+  "password": "123456"
+}

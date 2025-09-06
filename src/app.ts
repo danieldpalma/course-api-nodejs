@@ -4,7 +4,8 @@ import { fastifySwagger } from '@fastify/swagger';
 import { getCoursesRoute } from './routes/get-course-by-id.ts';
 import { getCoursesByIdRoute } from './routes/get-courses.ts';
 import { createCoursesRoute } from './routes/create-course.ts';
-import scarlarAPIReference from '@scalar/fastify-api-reference';
+import ScalarApiReference from '@scalar/fastify-api-reference';
+import { loginRoute } from './routes/login.ts';
 
 const server = fastify({
   logger: {
@@ -29,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
     transform: jsonSchemaTransform,
   });
 
-  server.register(scarlarAPIReference, {
+  server.register(ScalarApiReference, {
     routePrefix: '/docs',
   });
 }
@@ -40,5 +41,6 @@ server.setValidatorCompiler(validatorCompiler);
 server.register(getCoursesRoute);
 server.register(getCoursesByIdRoute);
 server.register(createCoursesRoute);
+server.register(loginRoute);
 
 export { server };
