@@ -1,8 +1,9 @@
 POST http://localhost:3333/courses
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNTEyYTNiNy04ZTJkLTQ5NjktYjY0MC0yOTUwN2RjMTVjM2YiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NzYyMzgwMn0.hkOl5NIN77Jw-SSfUial41RjrmY8AHTr6CWMei2izZc
 
 {
-  "title": "Curso de React Native"
+  "title": "Curso de Vue"
 }
 
 ###
@@ -21,7 +22,6 @@ GET http://localhost:3333/courses?orderby=title&page=1
 
 GET http://localhost:3333/courses/0bd25ed2-511a-4306-9ca5-402dfa571611
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNTEyYTNiNy04ZTJkLTQ5NjktYjY0MC0yOTUwN2RjMTVjM2YiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc1NzYyMjU1M30.8WX2JvUb-_yIT3nr2bDI8VHQVsA68OebggfMMId921Y
-
 
 ###
 
